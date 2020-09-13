@@ -1,13 +1,14 @@
 use structopt::StructOpt;
 
 #[derive(StructOpt)]
-pub struct CommandOpt {
+pub struct Opt {
     #[structopt(subcommand)]
-    pub command: Command,
+    pub sub: SubCommands,
 }
 
 #[derive(StructOpt)]
 #[structopt(about = "rust-cli-play COMMAND [OPTIONS, ...]")]
-pub enum Command {
+pub enum SubCommands {
+    #[structopt(about = "Display recent status")]
     Status,
 }

@@ -1,4 +1,4 @@
-use crate::opts::{Command, CommandOpt};
+use crate::opts::{SubCommands, Opt};
 use derive_more::From;
 use std::io;
 use structopt::StructOpt;
@@ -14,17 +14,17 @@ async fn status() -> Result<(), CliError> {
     Ok(())
 }
 
-async fn run_subcommand(opts: Command) -> Result<(), CliError> {
+async fn run_subcommand(opts: SubCommands) -> Result<(), CliError> {
     match opts {
-        Command::Status => status().await,
+        SubCommands::Status => status().await,
     }
 }
 
 #[tokio::main]
 async fn main() {
-    let opt: CommandOpt = CommandOpt::from_args();
+    let opt: Opt = Opt::from_args();
 
-    match run_subcommand(opt.command).await {
+    match run_subcommand(opt.sub).await {
         Ok(_) => (),
         Err(error) => {
             println!("{:?}", error);
