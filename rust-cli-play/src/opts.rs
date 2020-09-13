@@ -10,5 +10,8 @@ pub struct Opt {
 #[structopt(about = "rust-cli-play COMMAND [OPTIONS, ...]")]
 pub enum SubCommands {
     #[structopt(about = "Display recent status")]
-    Status,
+    Status {
+        #[structopt(short, long, help = "Enable extended description output.")]
+        verbose: String,
+    },
 }

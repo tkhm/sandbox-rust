@@ -1,4 +1,4 @@
-use crate::opts::{SubCommands, Opt};
+use crate::opts::{Opt, SubCommands};
 use derive_more::From;
 use std::io;
 use structopt::StructOpt;
@@ -10,13 +10,14 @@ enum CliError {
     IoError(io::Error),
 }
 
-async fn status() -> Result<(), CliError> {
+async fn status(verbose: String) -> Result<(), CliError> {
+    println!("Your verbose arg value: {}", verbose);
     Ok(())
 }
 
 async fn run_subcommand(opts: SubCommands) -> Result<(), CliError> {
     match opts {
-        SubCommands::Status => status().await,
+        SubCommands::Status { verbose } => status(verbose).await,
     }
 }
 
