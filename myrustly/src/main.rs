@@ -9,7 +9,7 @@ fn main() {
     loop {
         println!("Please input something!");
 
-        let secret_number = 10;
+        let secret_number = make_secret_number();
         let mut guess = String::new();
         io::stdin()
             .read_line(&mut guess)
@@ -28,4 +28,8 @@ fn main() {
             }
         }
     }
+}
+
+fn make_secret_number() -> u32 {
+    10
 }
