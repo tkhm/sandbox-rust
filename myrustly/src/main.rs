@@ -1,35 +1,15 @@
-use std::io;
-use std::cmp::Ordering;
-use log::debug;
+use log::info;
+use std::{thread, time};
 
 fn main() {
     env_logger::init();
-    debug!("ferris_watch starting...");
+    let timer_sec = time::Duration::from_secs(10);
+    let one_sec = time::Duration::from_secs(1);
+    let now = time::Instant::now();
 
-    loop {
-        println!("Please input something!");
-
-        let secret_number = make_secret_number();
-        let mut guess = String::new();
-        io::stdin()
-            .read_line(&mut guess)
-            .expect("Failed to read line");
-        let guess: u32 = match guess.trim().parse() {
-            Ok(num) => num,
-            Err(_) => continue,
-        };
-        
-        match guess.cmp(&secret_number) {
-            Ordering::Less => println!("less"),
-            Ordering::Greater => println!("greater"),
-            Ordering::Equal => {
-                println!("Got it!");
-                break;
-            }
-        }
+    for n in (0..timer_sec.as_secs()).rev() {
+        thread::sleep(one_sec);
+        info!("countdown: {}", n);
+        info!("{} secs past", now.elapsed().as_secs().to_string());
     }
-}
-
-fn make_secret_number() -> u32 {
-    10
 }
