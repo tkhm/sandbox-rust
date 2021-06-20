@@ -1,5 +1,5 @@
 mod lib;
 
 fn main() {
-    lib::xxx(10);
+    lib::xxx(3);
 }
