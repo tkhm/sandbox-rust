@@ -1,6 +1,6 @@
 [package]
-name = "myrustly"
-version = "0.0.1"
+name = "pomo_cli"
+version = "0.1.0"
 authors = ["tkhm <no-reply@mail.tkhm.dev>"]
 edition = "2018"
 
